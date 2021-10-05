@@ -11,3 +11,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+.cuadro {
+  background-color: bisque;
+}
+
+.tarjeta {
+  background-color: white;
+  border-radius: 0.05rem;
+  border-color: black;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.tarjeta img {
+  width: 3rem;
+  height: auto;
+}
