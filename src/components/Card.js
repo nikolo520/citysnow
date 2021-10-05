@@ -1,9 +1,7 @@
 import React from "react";
 import { Col, Row } from "reactstrap";
-import axios from 'axios';
 
 function Card(props){
-    
     return(
         <div className="card">
             <Row>

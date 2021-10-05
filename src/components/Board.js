@@ -7,8 +7,8 @@ function Board(props){
     return(
         <Container>
             <Row>
-                <Feed />
-                <Aside />
+                <Feed data={props.data.articles} />
+                <Aside data={props.data.weather}/>
             </Row>
         </Container>
     );
