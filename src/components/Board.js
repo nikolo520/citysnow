@@ -5,10 +5,10 @@ import { Container, Row } from 'reactstrap';
 
 function Board(props){
     return(
-        <Container>
+        <Container className="mt-3 board">
             <Row>
                 <Feed data={props.data.articles} />
-                <Aside data={props.data.weather}/>
+                <Aside data={props.data.weather} />
             </Row>
         </Container>
     );

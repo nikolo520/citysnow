@@ -5,20 +5,16 @@ import {
     NavbarToggler,
     NavbarBrand,
     Nav,
-    NavItem,
-    NavLink,
     UncontrolledDropdown,
     InputGroup,
     InputGroupAddon,
     Button,
     Input,
     Container,
-    Col
   } from 'reactstrap';
 
   function Menu(props){
     const [isOpen, setIsOpen] = useState(false);
-
     const toggle = () => setIsOpen(!isOpen);
 
     return(
@@ -34,7 +30,7 @@ import {
                 <InputGroup>
                     <Input name="city" onChange={props.onInputChange} placeholder="Por favor ingrese la ciudad a consultar"/>
                     <InputGroupAddon addonType="append">
-                        <Button onClick={()=>props.setData} color="secondary">Buscar</Button>
+                        <Button onClick={()=>props.search} color="secondary">Buscar</Button>
                     </InputGroupAddon>
                 </InputGroup>
                 </Collapse>
