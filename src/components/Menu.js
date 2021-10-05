@@ -1,4 +1,4 @@
-import React, { useState ,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
     Collapse,
     Navbar,
@@ -8,10 +8,11 @@ import {
     NavItem,
     NavLink,
     UncontrolledDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem,
-    NavbarText,InputGroup, InputGroupAddon, Button, Input, Container
+    InputGroup,
+    InputGroupAddon,
+    Button,
+    Input,
+    Container
   } from 'reactstrap';
 
   import axios from 'axios';
@@ -21,11 +22,41 @@ import {
 
     const toggle = () => setIsOpen(!isOpen);
 
-    const [data,setData]=useState([]);
-
-    const search =()=>{
-
+    const [data, setData]=useState([]);
+    const[textInput, setTextInput]= useState({});
+    const handleChange=e=>{
+        const {name, value} = e.target;
+        console.log(e.target.value);
+        setTextInput({
+            ...textInput,
+            [name]:value
+        })
     }
+    useEffect(()=>{
+        if (textInput.city !== ''){
+        const api_key = "62378f67cf044057bf2e6fa94e83d4b7"
+        var baseUrl = "https://newsapi.org/v2/everything?"+
+                        "sortBy=popularity"+
+                        "&from=2021-09-05"+
+                        "&apiKey=" + api_key +
+                        "&q=" + textInput.city
+        const search_data = async() =>{
+            await axios.get(baseUrl)
+            .then(response=>{
+                if(response.data.status === "ok"){
+                    setData(response.data.articles );
+                }else{
+                    setData({})
+                }
+            }).catch(error=>{
+                console.log(error);
+            })
+        }
+        search_data();
+        }else{
+            console.log("No hay criterios de busqueda")
+        }
+    },[]);
     return(
         <Navbar color="light" light expand="md">
             <Container>
@@ -40,12 +71,21 @@ import {
                     </UncontrolledDropdown>
                 </Nav>
                 <InputGroup>
-                    <Input />
+                    <Input name="city" onChange={handleChange}/>
                     <InputGroupAddon addonType="append">
-                        <Button color="secondary">Buscar</Button>
+                        <Button onClick={()=>setData} color="secondary">Buscar</Button>
                     </InputGroupAddon>
                 </InputGroup>
                 </Collapse>
+                {
+                    data.map(obj=>(
+                        <div>
+                            <p>Titulo {obj.title}</p>
+                            <p>URL {obj.url}</p>
+                            <p>Autor: {obj.author}</p>
+                        </div>
+                    ))
+                }
             </Container>
         </Navbar>
     );
