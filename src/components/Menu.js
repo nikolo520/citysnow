@@ -32,27 +32,28 @@ import {
             [name]:value
         })
     }
+
     useEffect(()=>{
-        if (textInput.city !== ''){
-        const api_key = "62378f67cf044057bf2e6fa94e83d4b7"
-        var baseUrl = "https://newsapi.org/v2/everything?"+
-                        "sortBy=popularity"+
-                        "&from=2021-09-05"+
-                        "&apiKey=" + api_key +
-                        "&q=" + textInput.city
-        const search_data = async() =>{
-            await axios.get(baseUrl)
-            .then(response=>{
-                if(response.data.status === "ok"){
-                    setData(response.data.articles );
-                }else{
-                    setData({})
-                }
-            }).catch(error=>{
-                console.log(error);
-            })
-        }
-        search_data();
+        if (typeof(textInput.city) !== 'undefined'){
+            const api_key = "62378f67cf044057bf2e6fa94e83d4b7"
+            var baseUrl = "https://newsapi.org/v2/everything?"+
+                            "sortBy=popularity"+
+                            "&from=2021-09-05"+
+                            "&apiKey=" + api_key +
+                            "&q=" + textInput.city
+            const search_data = async() =>{
+                await axios.get(baseUrl)
+                .then(response=>{
+                    if(response.data.status === "ok"){
+                        setData(response.data.articles );
+                    }else{
+                        setData({})
+                    }
+                }).catch(error=>{
+                    console.log(error);
+                })
+            }
+            search_data();
         }else{
             console.log("No hay criterios de busqueda")
         }
@@ -77,15 +78,6 @@ import {
                     </InputGroupAddon>
                 </InputGroup>
                 </Collapse>
-                {
-                    data.map(obj=>(
-                        <div>
-                            <p>Titulo {obj.title}</p>
-                            <p>URL {obj.url}</p>
-                            <p>Autor: {obj.author}</p>
-                        </div>
-                    ))
-                }
             </Container>
         </Navbar>
     );

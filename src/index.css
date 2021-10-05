@@ -17,14 +17,37 @@ code {
   background-color: bisque;
 }
 
-.tarjeta {
-  background-color: white;
-  border-radius: 0.05rem;
-  border-color: black;
-  margin-top: 10px;
-  margin-bottom: 10px;
+.cut-images{
+  overflow: hidden;
 }
-.tarjeta img {
-  width: 3rem;
-  height: auto;
+.card {
+  background-color: white;
+  border-radius: 0.1rem;
+  border-color: black;
+  margin-top: 1.2rem;
+  margin-bottom: 1.2rem;
+  padding: 1rem 1rem 1rem 1rem;
+  text-align: left;
+}
+
+.card img {
+  width: 12rem;
+  overflow: hidden;
+}
+
+.card-title{
+  text-align: left;
+}
+
+.card-site{
+  text-align: right;  
+}
+
+.card-description{
+  text-align: left justify;
+}
+
+.card-foo{
+  text-align: right;
+
 }

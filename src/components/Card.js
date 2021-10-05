@@ -1,20 +1,32 @@
 import React from "react";
-import { Col, Row, Media } from "reactstrap";
+import { Col, Row } from "reactstrap";
+import axios from 'axios';
 
 function Card(props){
+    
     return(
-        <div className="tarjeta">
+        <div className="card">
             <Row>
-                <Col xs="3">
-                    <img className="img" data-src="https://cdn-icons-png.flaticon.com/512/2540/2540832.png" alt="Noticia" />
+                <Col md="4" className="cut-images">
+                    <a href={props.url}>
+                        <img src={props.urlToImage} alt={props.title} />
+                    </a>
                 </Col>
-                <Col xs="9">
-                    <div>
-                        <div className="text-left">What is Lorem Ipsum?</div>
-                        <div className="text-left">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                        </div>
-                    </div>
+                <Col md="8">
+                    <Row>
+                        <Col xs="8">
+                            <a href={props.url}><p className="h4 card-title">{props.title}</p></a>
+                        </Col>
+                        <Col xs="4">
+                            <a href={props.url}><p className="card-site">{props.source.name}</p></a>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <p className="card-description">{props.description}</p>
+                    </Row>
+                    <Row>
+                        <p className="card-foo"><span className="blockquote-footer">{props.author}</span></p>
+                    </Row>
                 </Col>
             </Row>
         </div>
