@@ -7,9 +7,8 @@ import axios from 'axios';
 
 function App() {
   const emptyState = {'articles':[],'weather':{}};
-  const [data, setData]=useState(emptyState);
+  const [data, setData] = useState(emptyState);
   const[textInput, setTextInput]= useState('');
-  
   const handleChange=e=>{
       const {name, value} = e.target;
       setTextInput({
@@ -17,56 +16,71 @@ function App() {
           [name]:value
       })
   }
+  const api_key_newsapi = "8717808a38834ff5b95efaccfffb5f46"
+  const api_key_openw = "cce17c4d20cdad7668feef63e8446aa3"
+  var baseUrlNews = "https://newsapi.org/v2/everything?"+
+                    "sortBy=popularity"+
+                    "&from=2021-09-05"+
+                    "&apiKey=" + api_key_newsapi;
+  var baseUrlOpen = "https://api.openweathermap.org/data/2.5/weather?"+
+                  "&units=metric" +
+                  "&appid=" + api_key_openw;
 
-  useEffect(()=>{
+  const get_data = () =>{
+    console.log(textInput.city)
+    var new_state = emptyState
     if (typeof(textInput.city) !== 'undefined'){
-        const api_key_newsapi = "62378f67cf044057bf2e6fa94e83d4b7"
-        const api_key_openw = "d18b3f14b2856e2a84196c94143efd95"
-        var baseUrlNews = "https://newsapi.org/v2/everything?"+
-                        "sortBy=popularity"+
-                        "&from=2021-09-05"+
-                        "&apiKey=" + api_key_newsapi +
-                        "&q=" + textInput.city
-        const search_news = async() =>{
-            await axios.get(baseUrlNews)
-            .then(response=>{
-                if(response.data.status === "ok"){
-                  setData({'articles':response.data.articles,'weather':{}});
-                }else{
-                  setData(emptyState);
-                }
-            }).catch(error=>{
-                console.log(error);
-            })
-        }
-        search_news();
-        var baseUrlOpen = "https://api.openweathermap.org/data/2.5/weather?"+
-                        "&units=metric" +
-                        "&appid=" + api_key_openw +
-                        "&q=" + textInput.city
-        console.log(baseUrlOpen)
-        const search_weather = async() =>{
-          await axios.get(baseUrlOpen)
-          .then(response=>{
-              console.log(response.data)
-              if(response.data.status === "ok"){
-                setData({'articles': data.articles,'weather':response.data.main});
-              }else{
-                setData({'articles': data.articles,'weather':{}});
-              }
-          }).catch(error=>{
-              console.log(error);
-          })
-        }
-        search_weather();
+      // Si no hay nada escrito en el buscador, se obtiene la ubicación actual para la busqueda
+      baseUrlNews += "&q=" + textInput.city;
+      baseUrlOpen += "&q=" + textInput.city;
     }else{
-        console.log("No hay criterios de busqueda")
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position){
+          baseUrlNews += "&q=" + textInput.city;
+          baseUrlOpen += "&lat=" + position.coords.latitude.toString() +"&lon=" + position.coords.longitude.toString();
+        });
+      }else{
+        console.log("No se pudo acceder a la geolocalización")
+      }
     }
-},[]);
+    axios.get(baseUrlNews)
+    .then(response=>{
+        console.log(response)
+        if(response.data.status === "ok"){
+          new_state = {'articles':response.data.articles,'weather':data.weather};
+        }else{
+          setData(emptyState);
+        }
+    }).catch(error=>{
+      new_state = {'articles': [],'weather':data.weather};
+      console.log(baseUrlNews)
+      console.log("Error al intentar consular las noticias");
+    })
+    axios.get(baseUrlOpen)
+    .then(response=>{
+      new_state = {'articles': [],'weather':response.data};
+    }).catch(error=>{
+      new_state = {'articles': [],'weather':{}};
+      console.log(baseUrlOpen)
+      console.log("Error al intentar consular el tiempo");
+    })
+    console.log(new_state)
+    return new_state;
+  }
+  useEffect(()=>{
+    setData(get_data());
+  },[]);
   return (
     <div className='App'>
-      <Menu nameapp="Citysnow" logoapp='https://image.flaticon.com/icons/png/512/1113/1113775.png' onInputChange={handleChange} search={setData}/>
-      <Board data={data} />
+      <Menu
+        nameapp="Citysnow"
+        logoapp= "http://openweathermap.org/img/wn/02d@2x.png"
+        data={data}
+        onInputChange={handleChange}
+        search={setData}
+        get_data={get_data}
+        />
+      <Board data={data}/>
     </div>
   );
 }

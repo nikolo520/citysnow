@@ -1,16 +1,39 @@
 import React from "react";
-import Panel from './Panel';
+import { Row } from "reactstrap";
 function Aside(props){
-    return(
-        <div className="col-3">
-            <Panel val={props.data.temp} title="Temperatura"/>
-            <Panel val={props.data.feels_like} title="Sensación Térmica"/>
-            <Panel val={props.data.temp_min} title="Temperatura Mínima"/>
-            <Panel val={props.data.temp_max} title="Temperatura Máxima"/>
-            <Panel val={props.data.pressure} title="Presión"/>
-            <Panel val={props.data.humidity} title="Humedad"/>
-        </div>
-    );
+    if (typeof(props.data.main) === 'undefined'){
+        return (<div>No hay resultado</div>)
+    }else{
+        return(
+            <div className="col-3 panel">
+                <Row>
+                    Temperatura
+                    <img src={"http://openweathermap.org/img/wn/"+props.data.weather[0].icon+"@2x.png" } target="Weather"/>
+                    <h1 className="display-5">{props.data.main.temp}°</h1>
+                </Row>
+                <Row>
+                    Sensación Térmica
+                    <h1 className="display-5">{props.data.main.feels_like}°</h1>
+                </Row>
+                <Row>
+                    Temperatura Mínima
+                    <h1 className="display-5">{props.data.main.temp_min}°</h1>
+                </Row>
+                <Row>
+                    Temperatura Máxima
+                    <h1 className="display-5">{props.data.main.temp_max}°</h1>
+                </Row>
+                <Row>
+                    Presión
+                    <h1 className="display-5">{props.data.main.pressure}</h1>
+                </Row>
+                <Row>
+                    Humedad
+                    <h1 className="display-5">{props.data.main.humidity}</h1>
+                </Row>
+            </div>
+        );
+    }
 }
 
 export default Aside;

@@ -58,5 +58,15 @@ code {
 }
 
 .panel{
-  background-color: white;
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.5);
+  color: rgba(255, 255, 255, 0.671);
+  margin-bottom: 1rem;
+  padding: 1rem 1rem 1rem 1rem;
+}
+
+.empty{
+  margin-top: 10rem;
+  color: rgb(167, 167, 167);
+  font-size: 2rem;
 }

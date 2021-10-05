@@ -18,7 +18,7 @@ import {
     const toggle = () => setIsOpen(!isOpen);
 
     return(
-        <Navbar color="light" light expand="md">
+        <Navbar color="dark" dark expand="md" className="mt-3">
             <Container>
                 <NavbarBrand href="/"><img src={props.logoapp} width="30" height="30" alt={props.nameapp} className="d-inline-block align-top" />{props.nameapp}</NavbarBrand>
                 <NavbarToggler onClick={toggle} />
@@ -30,7 +30,7 @@ import {
                 <InputGroup>
                     <Input name="city" onChange={props.onInputChange} placeholder="Por favor ingrese la ciudad a consultar"/>
                     <InputGroupAddon addonType="append">
-                        <Button onClick={()=>props.search} color="secondary">Buscar</Button>
+                        <Button onClick={()=>props.search(props.get_data())} color="secondary">Buscar</Button>
                     </InputGroupAddon>
                 </InputGroup>
                 </Collapse>
