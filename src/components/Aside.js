@@ -1,35 +1,34 @@
 import React from "react";
 import { Row } from "reactstrap";
 function Aside(props){
-    if (typeof(props.data.main) === 'undefined'){
-        return (<div>No hay resultado</div>)
+    if (Object.keys(props.data).length == 0){
+        return (<div>.</div>)
     }else{
         return(
             <div className="col-3 panel">
                 <Row>
-                    Temperatura
-                    <img src={"http://openweathermap.org/img/wn/"+props.data.weather[0].icon+"@2x.png" } target="Weather"/>
-                    <h1 className="display-5">{props.data.main.temp}°</h1>
+                    <p>Temperatura</p>
+                    <p><span className="display-5 vertical-center">{props.data.temp}°</span><img src={"http://openweathermap.org/img/wn/"+props.data.icon+"@2x.png" } target="Weather"/></p>
                 </Row>
                 <Row>
-                    Sensación Térmica
-                    <h1 className="display-5">{props.data.main.feels_like}°</h1>
+                    <p>Sensación Térmica</p>
+                    <h1 className="display-5">{props.data.feels_like}°</h1>
                 </Row>
                 <Row>
-                    Temperatura Mínima
-                    <h1 className="display-5">{props.data.main.temp_min}°</h1>
+                    <p>Temperatura Mínima</p>
+                    <h1 className="display-5">{props.data.temp_min}°</h1>
                 </Row>
                 <Row>
-                    Temperatura Máxima
-                    <h1 className="display-5">{props.data.main.temp_max}°</h1>
+                    <p>Temperatura Máxima</p>
+                    <h1 className="display-5">{props.data.temp_max}°</h1>
                 </Row>
                 <Row>
-                    Presión
-                    <h1 className="display-5">{props.data.main.pressure}</h1>
+                    <p>Presión</p>
+                    <h1 className="display-5">{props.data.pressure}</h1>
                 </Row>
                 <Row>
-                    Humedad
-                    <h1 className="display-5">{props.data.main.humidity}</h1>
+                    <p>Humedad</p>
+                    <h1 className="display-5">{props.data.humidity}</h1>
                 </Row>
             </div>
         );

@@ -2,8 +2,9 @@ import React from "react";
 import Card from './Card';
 
 function Feed(props){
-    if (typeof(props.data) === 'undefined'){
-        return (<div>No hay resultados</div>)
+    console.log(props)
+    if (props.data.length == 0){
+        return (<div className="empty">No hay resultados</div>)
     }else{
         return(
             <div className="col-9">

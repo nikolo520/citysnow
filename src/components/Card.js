@@ -16,7 +16,7 @@ function Card(props){
                             <a href={props.url}><p className="h4 card-title">{props.title}</p></a>
                         </Col>
                         <Col xs="4">
-                            <a href={props.url}><p className="card-site">{props.source.name}</p></a>
+                            <p className="card-site">{props.source}</p>
                         </Col>
                     </Row>
                     <Row>
