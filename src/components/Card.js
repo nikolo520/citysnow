@@ -6,14 +6,14 @@ function Card(props){
         <div className="card mb-2">
             <Row>
                 <Col md="4" className="cut-images">
-                    <a href={props.url}>
+                    <a href={props.url} target="_blank">
                         <img src={props.urlToImage} alt={props.title} />
                     </a>
                 </Col>
                 <Col md="8">
                     <Row>
                         <Col xs="8">
-                            <a href={props.url}><p className="h4 card-title">{props.title}</p></a>
+                            <a href={props.url} target="_blank"><p className="h4 card-title">{props.title}</p></a>
                         </Col>
                         <Col xs="4">
                             <p className="card-site">{props.source}</p>
