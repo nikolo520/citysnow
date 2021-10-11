@@ -2,9 +2,8 @@ import React from "react";
 import Card from './Card';
 
 function Feed(props){
-    console.log(props)
     if (props.data.length == 0){
-        return (<div className="empty">No hay resultados</div>)
+        return (<div className="empty mt-5">No hay resultados</div>)
     }else{
         return(
             <div className="col-9">
@@ -16,7 +15,7 @@ function Feed(props){
                             urlToImage={obj.urlToImage}
                             author={obj.author}
                             description={obj.description}
-                            source={obj.source}
+                            source={obj.sourc}
                         />
                     ))
                 }

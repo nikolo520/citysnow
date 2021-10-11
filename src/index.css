@@ -19,7 +19,9 @@ code {
 
 .cut-images{
   overflow: hidden;
+  display: block;
 }
+
 .card {
   background-color: white;
   border-radius: 0.1rem;
@@ -29,16 +31,14 @@ code {
   text-align: left;
 }
 
-.board {
-}
-
 .board div{
   opacity: 1;
 }
 
 .card img {
-  width: 12rem;
+  width: 100%;
   overflow: hidden;
+  border-radius: 0.5rem;
 }
 
 .card-title{
@@ -77,9 +77,29 @@ code {
   color: rgba(170, 170, 170, 0.671);
   margin-bottom: 1rem;
   padding: 0.5rem 0.5rem 0.5rem 0.5rem;
-  border-radius: 2rem;
   color: rgb(243, 243, 243);
 }
 .history-item{
   color: rgb(231, 231, 231);
+}
+
+.nav_per{
+  background: rgb(170, 170, 170);
+  background: rgba(170, 170, 170, 0.5);
+  color: rgba(170, 170, 170, 0.671);
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  color: rgb(243, 243, 243);
+}
+
+.rb{
+  margin-left: 2rem;
+}
+
+.special-w{
+  width: -webkit-fill-available;
+}
+
+.titulo{
+  font-size: 3rem;
+  color: rgba(240, 248, 255, 0.822);
 }

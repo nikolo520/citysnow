@@ -3,7 +3,7 @@ import { Col, Row } from "reactstrap";
 
 function Card(props){
     return(
-        <div className="card">
+        <div className="card mb-2">
             <Row>
                 <Col md="4" className="cut-images">
                     <a href={props.url}>

@@ -2,7 +2,7 @@ import React from "react";
 import { Row } from "reactstrap";
 function Aside(props){
     if (Object.keys(props.data).length == 0){
-        return (<div>.</div>)
+        return (<div></div>)
     }else{
         return(
             <div className="col-3 panel">
@@ -24,11 +24,11 @@ function Aside(props){
                 </Row>
                 <Row>
                     <p>Presión</p>
-                    <h1 className="display-5">{props.data.pressure}</h1>
+                    <h1 className="display-5">{props.data.pressure} mbar</h1>
                 </Row>
                 <Row>
                     <p>Humedad</p>
-                    <h1 className="display-5">{props.data.humidity}</h1>
+                    <h1 className="display-5">{props.data.humidity}%</h1>
                 </Row>
             </div>
         );
